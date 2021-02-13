@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_POST['signup-sumbit'])){
+if(isset($_POST['signup-submit'])){
 
 
     require 'dbhandler.php';
@@ -9,7 +9,7 @@ if(isset($_POST['signup-sumbit'])){
     $email = $_POST['email'];
     $passw = $_POST['pwd'];
     $passw_rep = $_POST['con-pwd'];
-    $fname = $_POST['fnmae'];
+    $fname = $_POST['fname'];
     $lname = $_POST['lname'];
 
 
