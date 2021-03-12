@@ -5,33 +5,35 @@ session_start();
 define('KB' , 1024);
 define('MB' , 1048576);
 
-if(isset($_POST['prof-submit'])) {
+if(isset($_POST['gallery-submit'])) {
 
-    $uname = $_SESSION['uname'];
-    $file = $_FILES['prof-image'];
+    $file = $_FILES['gallery-image'];
     $file_name = $file['name'];
     $file_tmp_name = $file['tmp_name'];
     $file_erro = $file['error'];
     $file_size = $file['size'];
+
+    $title = $_POST['title'];
+    $descript = $_POST['descript'];
 
     $ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
     $allowed = array('jpg','jpeg','png','svg');
 
     if($file_error !== 0 ){
-        header("Location ../profile.php?error=UploadError");
+        header("Location ../admin.php?error=UploadError");
         exit();
     
     }
 
     if(!in_array($ext, $allowed)){
-        header("Location ../profile.php?error=InvalidType");
+        header("Location ../admin.php?error=InvalidType");
         exit();
     
     }
 
     if($file_size > 4*MB){
-        header("Location ../profile.php?error=FileSizeExceeded");
+        header("Location ../admin.php?error=FileSizeExceeded");
         exit();
     
     }
@@ -39,19 +41,29 @@ if(isset($_POST['prof-submit'])) {
     else{
         $new_name = uniqid('',true).".".$ext;
 
-        $destination = '../profiles/'.$new_name;
+        $destination = '../gallery/'.$new_name;
 
-        $sql = "UPDATE profiles SET profpic = '$destination' WHERE uname='$uname'";
-
-        mysqli_query($conn,$sql);
-
-        move_uploaded_files($file_tmp_name, $destination);
-        header("Location ../profile.php?success=UploadWin");
-        exit();
+        $sql = "INSERT INTO gallery (title, desript, picpath) VALUES (?,?,?) ";
+        $stmt = mysqli_stmt_init($conn);
+       
+        if(!mysqli_stmt_prepare($stmt,$sql))
+        {
+            header("Location ../admin.php?error=SQLInjection");
+            exit();
+        }else{
+            mysqli_stmt_bind_param($stmt, "sss",$title,$descript,$destination);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_store_result($stmt);
+            move_uploaded_files($file_tmp_name, $destination);
+            header("Location ../admin.php?success=GAlleryUpload");
+            exit();
+        }
+        
+       
 
     }
 
 }else{
-    header("Location ../profile.php");
+    header("Location ../admin.php");
     exit();
 }
