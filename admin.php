@@ -30,14 +30,14 @@ if(isset($_SESSION['uid'])){
 
             <form action="includes/gallery-helper.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <img src="iamges/bandb.png" alt="profile pic" onclick="triggered();" id="gallery-display">
+                    <img src="images/bandb.png" alt="profile pic" onclick="triggered();" id="gallery-display">
 
                     <input type="text" name="title" class="form-control" placeholder="title" >
                     <input type="file" name="gallery-image" id="gallery-image" onchange="preview(this)" class="form-control"
                         style="display: none;">
                 </div>
                 <div class="form-group">
-                    <textarea name="description" id="bio" cols="30" rows="10" placeholder="Description"
+                    <textarea name="descript" id="bio" cols="30" rows="10" placeholder="Description"
                         style="text-align: center;"></textarea>
                 </div>
                 <div class="form-group">
