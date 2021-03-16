@@ -10,7 +10,7 @@ if(isset($_POST['gallery-submit'])) {
     $file = $_FILES['gallery-image'];
     $file_name = $file['name'];
     $file_tmp_name = $file['tmp_name'];
-    $file_erro = $file['error'];
+    $file_error = $file['error'];
     $file_size = $file['size'];
 
     $title = $_POST['title'];
@@ -21,19 +21,19 @@ if(isset($_POST['gallery-submit'])) {
     $allowed = array('jpg','jpeg','png','svg');
 
     if($file_error !== 0 ){
-        header("Location ../admin.php?error=UploadError");
+        header("Location: ../admin.php?error=UploadError");
         exit();
     
     }
 
     if(!in_array($ext, $allowed)){
-        header("Location ../admin.php?error=InvalidType");
+        header("Location: ../admin.php?error=InvalidType");
         exit();
     
     }
 
     if($file_size > 4*MB){
-        header("Location ../admin.php?error=FileSizeExceeded");
+        header("Location: ../admin.php?error=FileSizeExceeded");
         exit();
     
     }
@@ -43,19 +43,19 @@ if(isset($_POST['gallery-submit'])) {
 
         $destination = '../gallery/'.$new_name;
 
-        $sql = "INSERT INTO gallery (title, desript, picpath) VALUES (?,?,?) ";
+        $sql = "INSERT INTO gallery (title, descript, picpath) VALUES (?,?,?) ";
         $stmt = mysqli_stmt_init($conn);
        
         if(!mysqli_stmt_prepare($stmt,$sql))
         {
-            header("Location ../admin.php?error=SQLInjection");
+            header("Location: ../admin.php?error=SQLInjection");
             exit();
         }else{
             mysqli_stmt_bind_param($stmt, "sss",$title,$descript,$destination);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
-            move_uploaded_files($file_tmp_name, $destination);
-            header("Location ../admin.php?success=GAlleryUpload");
+            move_uploaded_file($file_tmp_name, $destination);
+            header("Location: ../admin.php?success=GAlleryUpload");
             exit();
         }
         
@@ -64,6 +64,6 @@ if(isset($_POST['gallery-submit'])) {
     }
 
 }else{
-    header("Location ../admin.php");
+    header("Location: ../admin.php");
     exit();
 }
