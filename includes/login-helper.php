@@ -9,7 +9,7 @@ if(isset($_POST['login-submit']))
 
     if(empty($uname) || empty($passw))
     {
-        header("Location ../login.php?error=EmptyField");
+        header("Location: ../login.php?error=EmptyField");
         exit();
     }
 
@@ -17,7 +17,7 @@ if(isset($_POST['login-submit']))
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt,$sql))
         {
-            header("Location ../login.php?error=SQLInjection");
+            header("Location: ../login.php?error=SQLInjection");
             exit();
         }else{
             mysqli_stmt_bind_param($stmt,"ss",$uname,$uname);
@@ -27,7 +27,7 @@ if(isset($_POST['login-submit']))
             
             if(empty($data))
             {
-                header("Location ../login.php?error=UserDNE");
+                header("Location: ../login.php?error=UserDNE");
                 exit();
             }else{
             $pass_check = password_verify($passw, $data['password']);
@@ -38,7 +38,8 @@ if(isset($_POST['login-submit']))
                 $_SESSION['fname'] = $data['fname'];
                 $_SESSION['uname'] = $data['uname'];
 
-                echo "<h1>Success!</h1><p>$uname</p>";
+                header ("Location: ../profile.php?success=login");
+                exit();           
             }else{
                 header ("Location: ../login.php?error=WrongPass");
                 exit();
@@ -47,6 +48,6 @@ if(isset($_POST['login-submit']))
     }
 
 }else{
-    header("Location ../login.php");
+    header("Location: ../login.php");
     exit();
 }

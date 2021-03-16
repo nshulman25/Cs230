@@ -22,14 +22,14 @@ require 'includes/dbhandler.php';
     }
     </script>
 
-    <?php
+<?php
 if(isset($_SESSION['uid'])){
     //username after login
     $prof_user = $_SESSION['uname'];
     $sqlpro = "SELECT * FROM profiles WHERE uname='$prof_user';";
     $res = mysqli_query($conn, $sqlpro);
     $row = mysqli_fetch_array($res);
-    $phot = $row['profpic'];
+    $photo = $row['profpic'];
 
 ?>
     <div class="h-50 center-me text-center">

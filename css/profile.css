@@ -1,16 +1,17 @@
 
 .center-me {
     display: flex;
-    justify-content: center;
+    justify-content:center;
     padding: 40px;
     text-align: "center";
 }
 
 #prof-display {
-    display: block;
+    display:block;
     width: 150px;
-    height: 10px auto;
-    border-radius: 50%;
+    height: 150px;
+    margin: 10px auto;
+    border-radius: 75%;
 }
 
 #uname-style {
