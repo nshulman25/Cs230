@@ -20,3 +20,9 @@
     font-weight: bold;
 }
 
+#gallery-display {
+    display:block;
+    width: 200px;
+    height: 150px;
+    margin: 10px auto;
+}
