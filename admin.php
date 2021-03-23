@@ -7,14 +7,14 @@ require 'includes/dbhandler.php';
     <link rel="stylesheet" href="css/profile.css">
     <script>
     function triggered() {
-        document.querySelector("#gallery-image").cick();
+        document.querySelector("#gallery-image").click();
     }
 
     function preview(e) {
         if (e.files[0]) {
             var reader = new FileReader();
             reader.onload = function(e) {
-                documnet.querySelector('#gallery-dispaly').setAttribute('src', e.target.result);
+                document.querySelector('#gallery-display').setAttribute('src', e.target.result);
             }
             reader.readAsDataURL(e.files[0]);
 

@@ -17,7 +17,7 @@ require 'includes/header.php';
             <a href="review.php?id='.$row['pid'].'">
             <img src="gallery/'.$row["picpath"].'">
             <h3>'.$row["title"].'</h3>
-            <p>'.$row["decription"].'</p>
+            <p>'.$row["description"].'</p>
             </a>
             </div>';
 
