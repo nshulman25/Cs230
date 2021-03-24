@@ -1,50 +1,19 @@
-<main>
-    <link rel="stylesheet" href="css/about.css">
+<h5 style="text-align: center;"> No reviews yet, be the first!</h5>
 
-    <div class="about">
-        <h1>About Us</h1>
-        <p>jaajbkfsadhbjwockyslushansfjndsfj</p>
-    </div>
-    <div class="row">
-        <div class="column">
-            <div class="card">
-                <img src="images/val.jpg">
-                <div class="container">
-                    <h2>CEO</h2>
-                    <p>Valorant</p>
-                    <p>Score: NA/10</p>
-                </div>
-            </div>
-        </div>
-        <div class="column">
-            <div class="card">
-                <img src="images/cyber.jpg">
-                <div class="container">
-                    <h2>CEO</h2>
-                    <p>Cyberpunk 2077</p>
-                    <p>Score: NA/10</p>
-                </div>
-            </div>
-        </div>
-        <div class="column">
-            <div class="card">
-                <img src="images/spider.jpg">
-                <div class="container">
-                    <h2>CEO</h2>
-                    <p>Spider-Man Miles Morales</p>
-                    <p>Score: NA/10</p>
-                </div>
-            </div>
-        </div>
-        <div class="column">
-            <div class="card">
-                <img src="images/cod.jpg">
-                <div class="container">
-                    <h2>CEO</h2>
-                    <p>Call of Duty Black Ops Cold War</p>
-                    <p>Score: NA/10</p>
-                </div>
-            </div>
+<div class="card mx-auto" style="width: 30%; padding: 5px; margin-bottom: 10px;">
+    <div class="media">
+        <img class="mr-3" src="'.$picpath." style="max-width: 75px; max-height: 75px; border-radius: 50%;">
+        <div class="media-body">
+          <h5 class="mt-0">'.$row['uname'].'</h5>
+          <p>'.$row['revdate'].'</p>
+          <p>'.$row['reviewtext'].'</p>
         </div>
     </div>
-</main>
+</div>
+
+
+<div class="container" style="text-align: center;">
+<h1>'.$avg.'</h1>
+<div class="container" style="margin-bottom: 10px;">'.stars($avg).'</div>
+<p>Number of Ratings: '.round($row2['TOTAL'],1).'</p>
+</div>
