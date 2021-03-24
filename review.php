@@ -13,24 +13,25 @@ require 'includes/review-helper.php';
             <form id="review-form" action="includes/review-helper.php" method="post">
 
                 <div class="container">
-                    <i class="fa fa-fire fa-2x fire-rev" data-index="1"></i>
-                    <i class="fa fa-fire fa-2x fire-rev" data-index="2"></i>
-                    <i class="fa fa-fire fa-2x fire-rev" data-index="3"></i>
-                    <i class="fa fa-fire fa-2x fire-rev" data-index="4"></i>
-                    <i class="fa fa-fire fa-2x fire-rev" data-index="5"></i>
+                    <i class="fa fa-star fa-2x star-rev" data-index="1"></i>
+                    <i class="fa fa-star fa-2x star-rev" data-index="2"></i>
+                    <i class="fa fa-star fa-2x star-rev" data-index="3"></i>
+                    <i class="fa fa-star fa-2x star-rev" data-index="4"></i>
+                    <i class="fa fa-star fa-2x star-rev" data-index="5"></i>
                 </div>
                 <div class="form-group" style="margin-top: 15px;">
                     <label class="title-label" for="review-title"
                         style="font-size: 16px; font-weight: bold;">Title</label>
                     <input type="text" name="review-title" id="review-title" style="width: 100%; margin-bottom: 10px;">
                     <textarea name="review" id="review-text" cols="50" rows="3"
-                        palceholder="Enter a comment..."></textarea>
+                        placeholder="Enter a comment..."></textarea>
 
                     <input type="hidden" name="rating" id="rating">
-                    <input type="hidden" name="item_id" value="<?php echo $_GET['id']; ?>">
+                    <input type="hidden" name="item_id" value="<?php echo $_GET['id'];?>">
                 </div>
                 <div class="form-group">
-                <button class="btn btn-outline-danger" type="submit" name="review-submit" id="review-submit" style="width: 100%;">Review</button>
+                    <button class="btn btn-outline-danger" type="submit" name="review-submit" id="review-submit"
+                        style="width: 100%;">Review</button>
                 </div>
 
             </form>
@@ -57,17 +58,17 @@ $(document).ready(function() {
     if (localStorage.getItem('rating') != null) {
         setStars(parseInt(localStorage.getItem('rating')));
     }
-    $('.fire-rev').on('click', function() {
+    $('.star-rev').on('click', function() {
         rateIndex = parseInt($(this).data('index'));
         localStorage.setItem('rating', rateIndex);
     });
-    $('.fire-rev').mouseover(function() {
+    $('.star-rev').mouseover(function() {
         reset_star();
         var currIndex = parseInt($(this).data('index'));
         setStars(currIndex);
 
     });
-    $('.fire-rev').mouseleave(function() {
+    $('.star-rev').mouseleave(function() {
         reset_star();
 
         if (rateIndex != -1) {
@@ -77,14 +78,14 @@ $(document).ready(function() {
 
     function setStars(max) {
         for (var i = 0; i < max; i++) {
-            $('.fire-rev:eq(' + i + ')').css('color', 'tomato');
+            $('.star-rev:eq(' + i + ')').css('color', 'goldenrod');
         }
         document.getElementById('rating').value = parseInt(localStorage.getItem('rating'));
         console.log(id);
     }
 
     function reset_star() {
-        $('.fire-rev').css('color', 'grey');
+        $('.star-rev').css('color', 'grey');
     }
 
 
